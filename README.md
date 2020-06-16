@@ -1,18 +1,18 @@
-# docker-laravel
+# docker-cakephp
 
-![License](https://img.shields.io/github/license/ucan-lab/docker-laravel?color=f05340)
-![Stars](https://img.shields.io/github/stars/ucan-lab/docker-laravel?color=f05340)
-![Issues](https://img.shields.io/github/issues/ucan-lab/docker-laravel?color=f05340)
-![Forks](https://img.shields.io/github/forks/ucan-lab/docker-laravel?color=f05340)
+![License](https://img.shields.io/github/license/ucan-lab/docker-cakephp?color=c92735)
+![Stars](https://img.shields.io/github/stars/ucan-lab/docker-cakephp?color=c92735)
+![Issues](https://img.shields.io/github/issues/ucan-lab/docker-cakephp?color=c92735)
+![Forks](https://img.shields.io/github/forks/ucan-lab/docker-cakephp?color=c92735)
 
 ## Introduction
 
-Build laravel development environment with docker-compose.
+Build cakephp development environment with docker-compose.
 
 ## Usage
 
-- [Build for Mac](https://github.com/ucan-lab/docker-laravel/wiki/Build-for-Mac)
-- [Build for Windows](https://github.com/ucan-lab/docker-laravel/wiki/Build-for-Windows)
+- [Build for Mac](https://github.com/ucan-lab/docker-cakephp/wiki/Build-for-Mac)
+- [Build for Windows](https://github.com/ucan-lab/docker-cakephp/wiki/Build-for-Windows)
 
 ## Container structure
 

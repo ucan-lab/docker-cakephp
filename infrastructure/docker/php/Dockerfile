@@ -9,14 +9,7 @@ ENV TZ=UTC \
   LC_ALL=en_US.UTF-8 \
   # composer environment
   COMPOSER_ALLOW_SUPERUSER=1 \
-  COMPOSER_HOME=/composer \
-  # Laravel environment
-  DB_CONNECTION=mysql \
-  DB_HOST=db \
-  DB_PORT=3306 \
-  DB_DATABASE=laravel_local \
-  DB_USERNAME=phper \
-  DB_PASSWORD=secret
+  COMPOSER_HOME=/composer
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -27,7 +20,7 @@ RUN apt-get update && \
   locale-gen en_US.UTF-8 && \
   localedef -f UTF-8 -i en_US en_US.UTF-8 && \
   mkdir /var/run/php-fpm && \
-  docker-php-ext-install intl pdo_mysql mbstring zip bcmath && \
+  docker-php-ext-install intl mbstring zip pdo_mysql && \
   composer config -g process-timeout 3600 && \
   composer config -g repos.packagist composer https://packagist.org && \
   composer global require hirak/prestissimo

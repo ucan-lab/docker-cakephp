@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="laravel_local">
+<dataSource name="docker-cakephp">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.15">
     <root id="1">
       <ServerVersion>8.0.19</ServerVersion>
@@ -8,12 +8,11 @@
       <DefaultCasing>exact</DefaultCasing>
     </root>
     <schema id="2" parent="1" name="information_schema">
-      <Current>1</Current>
       <Collation>utf8_general_ci</Collation>
     </schema>
-    <schema id="3" parent="1" name="laravel_local">
+    <schema id="3" parent="1" name="my_app">
       <Current>1</Current>
-      <Collation>utf8mb4_ja_0900_as_cs_ks</Collation>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
     <collation id="4" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
