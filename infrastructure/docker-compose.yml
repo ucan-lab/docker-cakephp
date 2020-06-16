@@ -1,0 +1,27 @@
+version: "3.8"
+volumes:
+  db-store:
+  php-fpm-socket:
+services:
+  app:
+    build: ./docker/php
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ../backend:/work/backend
+      - ./docker/php/bash/.bash_history:/root/.bash_history
+      - ./docker/php/bash/psysh:/root/.config/psysh
+
+  web:
+    build: ./docker/nginx
+    ports:
+      - 80:80
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ../backend:/work/backend
+
+  db:
+    build: ./docker/mysql
+    volumes:
+      - db-store:/var/lib/mysql
+    ports:
+      - 3306:3306
