@@ -3,40 +3,33 @@ up:
 build:
 	docker-compose build --no-cache --force-rm
 create-project:
-	mkdir -p ./docker/php/bash/psysh
 	touch ./docker/php/bash/.bash_history
 	@make build
 	@make up
-	docker-compose exec app composer create-project --prefer-dist laravel/laravel .
+	docker-compose exec app composer create-project --prefer-dist cakephp/app:4.* .
+	docker-compose exec app sed -i '0,/localhost/ s/localhost/db/' config/app_local.php
 install-recommend-packages:
-	docker-compose exec app composer require doctrine/dbal
-	docker-compose exec app composer require --dev barryvdh/laravel-ide-helper
-	docker-compose exec app composer require --dev beyondcode/laravel-dump-server
-	docker-compose exec app composer require --dev barryvdh/laravel-debugbar
 	docker-compose exec app composer require --dev roave/security-advisories:dev-master
-	docker-compose exec app php artisan vendor:publish --provider="BeyondCode\DumpServer\DumpServerServiceProvider"
-	docker-compose exec app php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 init:
-	mkdir -p ./docker/php/bash/psysh
 	touch ./docker/php/bash/.bash_history
 	docker-compose up -d --build
+	docker-compose exec app cp config/.env.example config/.env
+	docker-compose exec app cp config/app_local.example.php config/app_local.php
 	docker-compose exec app composer install
-	docker-compose exec app cp .env.example .env
-	docker-compose exec app php artisan key:generate
-	docker-compose exec app php artisan storage:link
-	docker-compose exec app php artisan migrate:fresh --seed
+down:
+	docker-compose down
+destroy:
+	docker-compose down --rmi all --volumes
 remake:
 	@make destroy
 	@make init
 stop:
 	docker-compose stop
-down:
-	docker-compose down
+start:
+	docker-compose start
 restart:
 	@make down
 	@make up
-destroy:
-	docker-compose down --rmi all --volumes
 destroy-volumes:
 	docker-compose down --volumes
 ps:
@@ -50,24 +43,9 @@ web:
 app:
 	docker-compose exec app bash
 migrate:
-	docker-compose exec app php artisan migrate
-fresh:
-	docker-compose exec app php artisan migrate:fresh
-seed:
-	docker-compose exec app php artisan db:seed
-tinker:
-	docker-compose exec app php artisan tinker
+	docker-compose exec app bin/cake migrations migrate
 test:
-	docker-compose exec app php artisan test
-optimize:
-	docker-compose exec app php artisan optimize
-optimize-clear:
-	docker-compose exec app php artisan optimize:clear
-cache:
-	docker-compose exec app composer dump-autoload -o
-	@make optimize
-cache-clear:
-	@make optimize-clear
+	docker-compose exec app composer test
 yarn:
 	docker-compose exec web yarn
 yarn-dev:
@@ -82,10 +60,5 @@ db:
 	docker-compose exec db bash
 sql:
 	docker-compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
-redis:
-	docker-compose exec redis redis-cli
-ide-helper:
-	docker-compose exec app php artisan clear-compiled
-	docker-compose exec app php artisan ide-helper:generate
-	docker-compose exec app php artisan ide-helper:meta
-	docker-compose exec app php artisan ide-helper:models --nowrite
+salt-generate:
+	docker-compose exec app bash -c "curl -s https://gist.githubusercontent.com/ucan-lab/cba0f7677355e07284fe1e2d5a90cd63/raw/3771e7c11963316eef389fc36a79144d6848a5db/cakephp-security-salt-generator.php | php"

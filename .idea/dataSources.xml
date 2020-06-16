@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="laravel_local" uuid="7f671bd9-18f8-4976-ad24-e0bc8d6bceec">
+    <data-source source="LOCAL" name="docker-cakephp" uuid="0c1ea42a-e0aa-44de-b96e-cf1aaf3bdf1c">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/laravel_local</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/my_app</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="CONVERT_TO_NULL" />

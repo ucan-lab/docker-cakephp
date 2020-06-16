@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/docker-laravel.iml" filepath="$PROJECT_DIR$/.idea/docker-laravel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/docker-cakephp.iml" filepath="$PROJECT_DIR$/.idea/docker-cakephp.iml" />
     </modules>
   </component>
 </project>
