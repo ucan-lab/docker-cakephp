@@ -3,6 +3,7 @@ up:
 build:
 	docker-compose build --no-cache --force-rm
 create-project:
+	mkdir -p ./docker/php/bash
 	touch ./docker/php/bash/.bash_history
 	@make build
 	@make up
